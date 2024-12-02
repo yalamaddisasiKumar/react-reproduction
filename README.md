@@ -1,6 +1,26 @@
 # React Reproduction
 
-Steps to reproduce:
+## Relevant code
+
+```jsx
+function App() {
+  const _id = useId() // If commented out, no warning.
+
+  const [prevValue, setPrevValue] = useState(false)
+  if (prevValue === false) setPrevValue(true) // If commented out, no warning.
+
+  return <Inner />
+}
+
+// If this component's body is copied into `App`, no warning.
+function Inner() {
+  const id = useId() // <---- NOT STABLE!
+
+  return <div id={id} />
+}
+```
+
+## Steps to reproduce
 
 ```
 git clone https://github.com/kognise/react-reproduction.git
