@@ -5,7 +5,10 @@ function App() {
   const _id = useId() // If commented out, no warning.
 
   const [prevValue, setPrevValue] = useState(false)
-  if (prevValue === false) setPrevValue(true) // If commented out, no warning.
+  useEffect(() => {
+    if (prevValue === false) setPrevValue(true)
+  }, [prevValue])
+
 
   return <Inner />
 }
